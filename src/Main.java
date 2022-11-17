@@ -8,15 +8,12 @@ public class Main {
         StepTracker stepTracker = new StepTracker();
         while (userInput != 0) {
             if (userInput == 1) {
-
                 stepTracker.enterSteps();
             }
             if (userInput == 2) {
-
                 stepTracker.printStats();
             }
             if (userInput == 3) {
-
                 stepTracker.changeGoalStepts();
             }
             printMenu();

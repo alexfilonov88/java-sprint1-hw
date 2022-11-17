@@ -15,15 +15,12 @@ public class StepTracker {
     }
 
     public void enterSteps() {
-
         System.out.println("Введите номер месяца");
         int selectedMonth = scanner.nextInt();
         System.out.println("Введите номер дня");
         int selectedDay = scanner.nextInt();
         System.out.println("Введите количество шагов");
-
         int steps = scanner.nextInt();
-
         MonthData monthData = monthToData[selectedMonth];
         monthData.days[selectedDay] = steps;
     }
@@ -34,21 +31,20 @@ public class StepTracker {
         MonthData monthData = monthToData[selectedMonth];
         int count = 0;
         int maxSteps = 0;
-
         int bestDays = 0;
-        int a = 0;
+        int series = 0; // Счетчик для максимальной серии
         for (int i = 1; i < monthData.days.length; i++) {
             count += monthData.days[i];
             if (monthData.days[i] > maxSteps) {
                 maxSteps = monthData.days[i];
             }
             if (monthData.days[i] > goalSteps) {
-                a++;
+                series++;
             } else {
-                if (bestDays < a) {
-                    bestDays = a;
+                if (bestDays < series) {
+                    bestDays = series;
                 }
-                a = 0;
+                series = 0;
             }
             System.out.println(i + " день: " + monthData.days[i]);
         }
@@ -59,11 +55,13 @@ public class StepTracker {
         System.out.println("Количество сожжённых килокалорий: " + Converter.convertToCalories(count));
         System.out.println("Лучшая серия: " + bestDays);
     }
-    public void changeGoalStepts(){
+
+    public void changeGoalStepts() {
         System.out.println("Введите новую цель");
         goalSteps = scanner.nextInt();
     }
+
     class MonthData {
-        int[] days = new int[31];// Заполните класс самостоятельно
+        int[] days = new int[31];
     }
 }
